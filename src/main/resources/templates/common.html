@@ -47,7 +47,7 @@
 
         <!--sidebar nav start-->
         <ul class="nav nav-pills nav-stacked custom-nav">
-            <li><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a th:href="@{/index}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
             <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>Layouts</span></a>
                 <ul class="sub-menu-list">
                     <li ><a href="blank_page.html"> Blank Page</a></li>
@@ -339,13 +339,14 @@
             <li>
                 <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     <img src="images/photos/user-avatar.png" alt="" />
-                    John Doe
+                    <!-- John Doe:会根据登录的用户名对index.html页面的用户名进行赋值 -->
+                    [[${session.loginUser.userName}]]
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                     <li><a href="#"><i class="fa fa-user"></i>  Profile</a></li>
                     <li><a href="#"><i class="fa fa-cog"></i>  Settings</a></li>
-                    <li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                    <li><a th:href="@{/}"><i class="fa fa-sign-out"></i> Log Out</a></li>
                 </ul>
             </li>
 
