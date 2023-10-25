@@ -52,6 +52,7 @@ public class IndexController {
     /* 里面跳转的url也会根据thymeleaf规则查找资源*/
     @GetMapping("/index.html")
     public String mainPage(HttpSession session, Model model){
+        /* 登录检查已经单独写一个拦截器进行验证，此处就不用再去验证
         //想要跳转到该页面需要判断是否登录成功，成功了才能跳转
         Object loginUser = session.getAttribute("loginUser");
         if(loginUser != null){
@@ -62,6 +63,7 @@ public class IndexController {
             model.addAttribute("msg", "请重新登录");
             //没有登录成功，重新回到登录页
             return "login";
-        }
+        }*/
+        return "index";
     }
 }
