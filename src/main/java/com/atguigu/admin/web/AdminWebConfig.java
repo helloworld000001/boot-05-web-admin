@@ -1,9 +1,7 @@
-package com.atguigu.admin.Web;
+package com.atguigu.admin.web;
 
 import com.atguigu.admin.interceptor.LoginInterceptor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**

@@ -16,6 +16,8 @@ import java.util.List;
 public class TableController {
     @GetMapping("/basic_table")
     public String basic_table(){
+        /* 用于测试错误响应
+        int i = 10/0; */
         return "table/basic_table";
     }
 
