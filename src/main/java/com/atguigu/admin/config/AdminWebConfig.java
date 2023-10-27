@@ -1,4 +1,4 @@
-package com.atguigu.admin.web;
+package com.atguigu.admin.config;
 
 import com.atguigu.admin.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
