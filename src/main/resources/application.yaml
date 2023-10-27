@@ -4,6 +4,8 @@ spring:
     username: root
     password: hsp
     driver-class-name: com.mysql.jdbc.Driver
+    filters: stat,wall
+    max-active: 12
   jdbc:
     template:
       # 1000秒内未查询出数据就认为数据超时

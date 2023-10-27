@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import javax.sql.DataSource;
+
 @Slf4j
 @SpringBootTest
 class Boot05WebAdminApplicationTests {
@@ -13,6 +15,9 @@ class Boot05WebAdminApplicationTests {
     // 虽然加上@Autowired会爆红，但是不加上运行时会出现空指针异常
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    DataSource dataSource;
 
     @Test
     void contextLoads() {
@@ -23,6 +28,9 @@ class Boot05WebAdminApplicationTests {
         // 查询出一条记录，使用Long.class类型接收
         Long aLong = jdbcTemplate.queryForObject("select count(*) from system_admin", Long.class);
         log.info("记录总数{}", aLong);
+
+        /* 此时发现数据源就是我们自己设置的dataSource */
+        log.info("数据源类型{}", dataSource.getClass());//com.alibaba.druid.pool.DruidDataSource
     }
 
 }

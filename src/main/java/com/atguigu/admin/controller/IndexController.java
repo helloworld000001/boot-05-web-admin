@@ -1,11 +1,14 @@
 package com.atguigu.admin.controller;
 
 import com.atguigu.admin.bean.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +19,20 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class IndexController {
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    /**
+     * 一个查询语句，用于测试druid的相关功能，执行返回查询结果在页面
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/sql")
+    public String queryFormDb(){
+        Long aLong = jdbcTemplate.queryForObject("select count(*) from system_admin", Long.class);
+        return aLong.toString();
+    }
+
     /**
      * 到登录页
      * @return
