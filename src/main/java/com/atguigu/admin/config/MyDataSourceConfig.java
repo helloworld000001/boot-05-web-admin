@@ -19,7 +19,10 @@ import java.util.Arrays;
  * @Description $
  * 2023/10/27 12:55
  */
-@Configuration
+// 失效注解，表示该类失效。
+@Deprecated
+// 注销掉@Configuration，以下的@Bean将不会被注入
+//@Configuration
 public class MyDataSourceConfig {
     /* 源码查看
     * 默认的自动配置时判断容器中没有才会配@ConditionalOnMissingBean(DataSource.class)
