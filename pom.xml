@@ -15,6 +15,8 @@
     <description>后台管理系统模板</description>
     <properties>
         <java.version>17</java.version>
+        <!-- 法二：在这里使用mysql.version设置
+        <mysql.version>5.7.19</mysql.version> -->
     </properties>
     <dependencies>
         <dependency>
@@ -47,6 +49,28 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
+        </dependency>
+
+        <!-- 导入mysql驱动：需要保证使用的数据库版本和导入的驱动版本相同 -->
+        <!-- 官方默认版本
+        <mysql.version>8.0.22</mysql.version>-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <!--法一：直接设置version -->
+            <version>5.1.49</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
