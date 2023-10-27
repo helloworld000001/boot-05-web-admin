@@ -4,8 +4,41 @@ spring:
     username: root
     password: hsp
     driver-class-name: com.mysql.jdbc.Driver
-    filters: stat,wall
-    max-active: 12
+    # 关闭自定义配置druid,使用starter配置
+    # filters: stat,wall
+    # max-active: 12
+
+    # 使用starter配置druid
+    druid:
+      # 这个包下的所有内容进行监控,监控SpringBean
+      aop-patterns: com.atguigu.admin.*
+      # 开启防火墙监控，注意这里是filters（有s）.stat是sql监控，wall是防火墙功能
+      filters: stat,wall,slf4j
+
+      # 配置druid的监控页功能
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin
+        # 失效重置按钮
+        reset-enable: false
+
+      # 采集web-jdbc关联监控的数据
+      web-stat-filter:
+        enabled: true
+        exclusions: '*.js,*.gif,*.jpg,*png,*.css,*.ico,/druid/*'
+        url-pattern: '/*'
+
+      # 对上面filters中的具体参数进行设定
+      filter:
+        stat:
+          # 设定查询超过1000s的都是慢查询
+          slow-sql-millis: 1000
+          log-slow-sql: true
+          enabled: true
+        wall:
+          enabled: true
+
   jdbc:
     template:
       # 1000秒内未查询出数据就认为数据超时
