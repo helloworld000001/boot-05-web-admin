@@ -43,3 +43,15 @@ spring:
     template:
       # 1000秒内未查询出数据就认为数据超时
       query-timeout: 1000
+
+# 配置mybatis规则
+mybatis:
+  # config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  # 一旦在这里使用configuration对mybatis进行定义，
+  # config-location: classpath:mybatis/mybatis-config.xml将不能存在，否则不知道按哪个去配置文件
+  configuration:
+    # 开启驼峰命名：当数据库有user_id这样的参数，开启后会自动匹配java中的userId参数
+    # 法一：mybatis的配置文件中配
+    map-underscore-to-camel-case: true
+
