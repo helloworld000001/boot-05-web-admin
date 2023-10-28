@@ -1,8 +1,10 @@
 package com.atguigu.admin.controller;
 
 import com.atguigu.admin.bean.Account;
+import com.atguigu.admin.bean.City;
 import com.atguigu.admin.bean.User;
 import com.atguigu.admin.service.AccountService;
+import com.atguigu.admin.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,24 @@ public class IndexController {
 
     @Autowired
     AccountService accountService;
+
+    @Autowired
+    CityService cityService;
+
+    /* 测试的时候使用postman提交表单，更加简单*/
+    @ResponseBody
+    @PostMapping("/city")
+    public City saveCity(City city){
+        cityService.insertCity(city);
+        return city;
+    }
+
+    @ResponseBody
+    @GetMapping("/city")
+    public City getCityById(@RequestParam("id") Long id){
+        return cityService.queryCityById(id);
+    }
+
 
     @ResponseBody
     @GetMapping("/account")

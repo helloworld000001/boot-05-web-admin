@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 根据全类名查找相关的类 -->
+<mapper namespace="com.atguigu.admin.mapper.CityMapper">
+    <!-- public void insert(City city); -->
+    <!-- value值从传入的city对象取，用#{}获取 -->
+    <!-- useGeneratedKeys封装自增主键，keyProperty这个主键名为id:
+            这里的作用是测试的时候会自动封装主键 -->
+    <!--<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into city(`name`,`state`,`country`) values(#{name},#{state},#{country})
+    </insert>-->
+</mapper>
