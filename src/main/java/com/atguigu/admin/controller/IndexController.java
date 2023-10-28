@@ -1,6 +1,8 @@
 package com.atguigu.admin.controller;
 
+import com.atguigu.admin.bean.Account;
 import com.atguigu.admin.bean.User;
+import com.atguigu.admin.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -21,6 +24,15 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    AccountService accountService;
+
+    @ResponseBody
+    @GetMapping("/account")
+    public Account getAccountById(@RequestParam("id") Long id){
+        return accountService.getAccountById(id);
+    }
 
     /**
      * 一个查询语句，用于测试druid的相关功能，执行返回查询结果在页面
