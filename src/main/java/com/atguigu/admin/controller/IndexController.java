@@ -3,8 +3,8 @@ package com.atguigu.admin.controller;
 import com.atguigu.admin.bean.Account;
 import com.atguigu.admin.bean.City;
 import com.atguigu.admin.bean.User;
-import com.atguigu.admin.service.AccountService;
-import com.atguigu.admin.service.CityService;
+import com.atguigu.admin.service.impl.AccountServiceImpl;
+import com.atguigu.admin.service.impl.CityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -28,10 +28,10 @@ public class IndexController {
     JdbcTemplate jdbcTemplate;
 
     @Autowired
-    AccountService accountService;
+    AccountServiceImpl accountService;
 
     @Autowired
-    CityService cityService;
+    CityServiceImpl cityService;
 
     /* 测试的时候使用postman提交表单，更加简单*/
     @ResponseBody
