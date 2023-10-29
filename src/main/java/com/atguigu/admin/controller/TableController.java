@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +27,15 @@ public class TableController {
         /* 用于测试错误响应
         int i = 10/0; */
         return "table/basic_table";
+    }
+
+    @GetMapping("/user/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id,
+                             @RequestParam(value = "pn", defaultValue = "1") Integer pn,
+                             RedirectAttributes ra){
+        userService.removeById(id);
+        ra.addAttribute("pn", pn);
+        return "redirect:/dynamic_table";
     }
 
     @GetMapping("/dynamic_table")
