@@ -1,5 +1,7 @@
 package com.atguigu.admin;
 
+import com.atguigu.admin.bean.User;
+import com.atguigu.admin.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ class Boot05WebAdminApplicationTests {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    UserMapper userMapper;
+
     @Test
     void contextLoads() {
         /*// 查询出一条记录
@@ -33,4 +38,9 @@ class Boot05WebAdminApplicationTests {
         log.info("数据源类型{}", dataSource.getClass());//com.alibaba.druid.pool.DruidDataSource
     }
 
+    @Test
+    void testUserMapper() {
+        User user = userMapper.selectById(1);
+        log.info("用户信息，{}", user);
+    }
 }

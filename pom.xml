@@ -50,10 +50,11 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
+        <!-- mybatis-plus已经引好了 -->
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!-- 导入mysql驱动：需要保证使用的数据库版本和导入的驱动版本相同 -->
         <!-- 官方默认版本
@@ -84,11 +85,18 @@
             <version>1.1.17</version>
         </dependency>
 
-        <!-- 引入mybatisStarter依赖 -->
+        <!-- 引入mybatisStarter依赖：mybatis-plus引好了，可以注销掉
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.4</version>
+        </dependency>-->
+
+        <!-- mybatis-plus已经引入jdbc的场景，所以可以不用引入jdbc依赖 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.4.1</version>
         </dependency>
 
     </dependencies>
