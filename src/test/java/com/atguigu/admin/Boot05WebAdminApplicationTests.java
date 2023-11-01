@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -23,6 +26,15 @@ class Boot05WebAdminApplicationTests {
 
     @Autowired
     UserMapper userMapper;
+
+    // 用于操作redis客户端
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
+
+    // 配置文件配好，依赖引入，此时底层就会使用jedis
+    // 这里是在配置文件中设置成 client-type: jedis
+    @Autowired
+    RedisConnectionFactory redisConnectionFactory;
 
     @Test
     void contextLoads() {
@@ -42,5 +54,20 @@ class Boot05WebAdminApplicationTests {
     void testUserMapper() {
         User user = userMapper.selectById(1);
         log.info("用户信息，{}", user);
+    }
+
+    @Test
+    void testRedis(){
+        ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+
+        // 往redis数据库中存放k-v
+        operations.set("hello", "world");
+
+        // 获取v
+        String hello = operations.get("hello");
+        System.out.println(hello);
+
+        System.out.println(redisConnectionFactory.getClass());
+        // class org.springframework.data.redis.connection.jedis.JedisConnectionFactory
     }
 }

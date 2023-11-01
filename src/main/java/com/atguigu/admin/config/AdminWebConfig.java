@@ -1,6 +1,8 @@
 package com.atguigu.admin.config;
 
 import com.atguigu.admin.interceptor.LoginInterceptor;
+import com.atguigu.admin.interceptor.RedisUrlCountInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -17,6 +19,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 * */
 @Configuration
 public class AdminWebConfig implements WebMvcConfigurer {
+    @Autowired
+    RedisUrlCountInterceptor redisUrlCountInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         /* 把刚刚写好的登录拦截器添加进来 */
@@ -29,5 +34,8 @@ public class AdminWebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns("/", "/login", "/css/**", "/fonts/**", "/images/**", "/js/**");
 
+        registry.addInterceptor(redisUrlCountInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/", "/login", "/css/**", "/fonts/**", "/images/**", "/js/**");
     }
 }

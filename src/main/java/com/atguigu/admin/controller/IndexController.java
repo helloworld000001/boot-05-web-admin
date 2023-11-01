@@ -6,6 +6,8 @@ import com.atguigu.admin.bean.User;
 import com.atguigu.admin.service.impl.AccountServiceImpl;
 import com.atguigu.admin.service.impl.CityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +34,9 @@ public class IndexController {
 
     @Autowired
     CityServiceImpl cityService;
+
+    @Autowired
+    StringRedisTemplate redisTemplate;
 
     /* 测试的时候使用postman提交表单，更加简单*/
     @ResponseBody
@@ -113,6 +118,12 @@ public class IndexController {
             //没有登录成功，重新回到登录页
             return "login";
         }*/
+        ValueOperations<String, String> opsForValue = redisTemplate.opsForValue();
+        String s = opsForValue.get("/index.html");
+        String s1 = opsForValue.get("/sql");
+
+        model.addAttribute("indexCount", s);
+        model.addAttribute("sqlCount", s1);
         return "index";
     }
 }
