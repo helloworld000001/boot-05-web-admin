@@ -43,6 +43,22 @@ spring:
     template:
       # 1000秒内未查询出数据就认为数据超时
       query-timeout: 1000
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    # 使用lettuce对pool的配置：
+    lettuce:
+      pool:
+        max-active: 10
+    # 当想要使用jedis时，在配置文件中明确声明使用jedis
+    client-type: jedis
+    # 使用jedis对pool的配置
+    jedis:
+      pool:
+        max-active: 10
+
+
 
 # 配置mybatis规则
 mybatis:
