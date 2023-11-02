@@ -126,6 +126,12 @@
             </exclusions>
         </dependency>
 
+        <!-- 引入监控指标依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

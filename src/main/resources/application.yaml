@@ -71,3 +71,26 @@ mybatis:
     # 法一：mybatis的配置文件中配
     map-underscore-to-camel-case: true
 
+# management是所有actuator的配置
+management:
+  endpoints:
+    # 默认关闭所有监控端点
+    enabled-by-default: false
+    web:
+      exposure:
+        # 以web方式暴露所有端点
+        include: '*'
+  endpoint:
+    health:
+      # 总是显示详细信息
+      show-details: always
+      enabled: true
+
+    info:
+      enabled: true
+
+    beans:
+      enabled: true
+
+    metrics:
+      enabled: true
