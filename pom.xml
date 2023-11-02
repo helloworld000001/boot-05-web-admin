@@ -118,8 +118,11 @@
             <artifactId>junit-vintage-engine</artifactId>
             <scope>test</scope>
             <exclusions>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-core</artifactId>
+                <exclusion>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-core</artifactId>
+                </exclusion>
+
             </exclusions>
         </dependency>
 
