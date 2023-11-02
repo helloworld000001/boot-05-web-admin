@@ -3,6 +3,7 @@ package com.atguigu.admin;
 import com.atguigu.admin.bean.User;
 import com.atguigu.admin.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
+// 如果是jupiter下的Test就是junit5;junit下的Test就是junit4
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
