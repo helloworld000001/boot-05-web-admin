@@ -4,9 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.EmptyStackException;
 import java.util.Stack;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,6 +22,26 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("嵌套测试")
 public class TestingAStackDemo {
     Stack<Object> stack;
+
+    @ParameterizedTest
+    @DisplayName("参数化测试")
+    // 数据源。这些数据会传入方法中
+    @ValueSource(ints = {1,2,3,4,5})
+    void testParameterized(int i){
+        System.out.println(i);
+    }
+
+    @ParameterizedTest
+    @DisplayName("参数化测试")
+    // 数据源。从方法中得到数据源
+    @MethodSource("stringProvider")
+    void testParameterized2(String  i){
+        System.out.println(i);
+    }
+
+    static Stream<String> stringProvider(){
+        return Stream.of("apple", "banana", "atguigu");
+    }
 
     @Test
     @DisplayName("new Stack()")
