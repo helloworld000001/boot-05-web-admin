@@ -18,6 +18,16 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Junit5Test {
 
     /**
+     * 测试前置条件:只会让测试方法执行中止，不会让测试方法失败.所以在打包时clean,test时是不会算成fail的
+     */
+    @DisplayName("测试前置条件")
+    @Test
+    void testAssumptions(){
+        Assumptions.assumeTrue(true, "结果不是true");
+        System.out.println("111211");
+    }
+
+    /**
      * 如果前面的断言失败了，后面的代码都不会执行
      */
     @DisplayName("测试简单断言")
