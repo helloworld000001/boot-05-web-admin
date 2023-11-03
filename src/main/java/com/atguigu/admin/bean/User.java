@@ -25,6 +25,7 @@ public class User {
     private String userName;
     @TableField(exist = false)
     private String password;
+    private String token;
 
     // 以下是数据库字段
     private Long id;
