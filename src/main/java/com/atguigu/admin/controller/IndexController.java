@@ -5,19 +5,21 @@ import com.atguigu.admin.bean.City;
 import com.atguigu.admin.bean.User;
 import com.atguigu.admin.service.impl.AccountServiceImpl;
 import com.atguigu.admin.service.impl.CityServiceImpl;
+import com.atguigu.admin.utils.JwtUtil;
+import jdk.nashorn.internal.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.http.HttpRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.stream.Stream;
 
 /**
  * @auther 陈彤琳
@@ -125,5 +127,35 @@ public class IndexController {
         model.addAttribute("indexCount", s);
         model.addAttribute("sqlCount", s1);
         return "index";
+    }
+
+    /**
+     * 测试的url是localhost:8080/testJwt?userName=tom&password=123,回车得到
+     * {userName=xxx,password=xxx,token=xxx}就可以获取token
+     * @param user
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/testJwt")
+    public User testJwt(User user){
+        if("1".equals("1")) {
+            //验证成功，创建token,将token存入User对象中，将User对象响应给客户端
+            user.setToken(JwtUtil.createToken());
+        }
+        // 实际上获取到的user就是{userName=xxx,password=xxx,token=xxx}
+        return user;
+    }
+
+    /**
+     * 测试方法是从testJwt获取到的token进行赋值,测试的url是localhost:8080/check_token?token=xxx
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/check_token")
+    public Boolean checkToken(String token){
+        /*当前端获取token放在request域中，可以验证是否过期
+        public Boolean checkToken(HttpServletRequest request){
+        String token = request.getHeader("token");*/
+        return JwtUtil.checkToken(token);
     }
 }
